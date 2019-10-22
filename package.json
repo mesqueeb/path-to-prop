@@ -1,6 +1,6 @@
 {
   "name": "path-to-prop",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "Retrieves a property from an object based on a path.to.that.prop",
   "main": "dist/index.cjs.js",
   "module": "dist/index.esm.js",

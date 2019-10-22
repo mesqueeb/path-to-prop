@@ -1,4 +1,4 @@
-# Merge anything 🥡
+# Path to prop 🛤
 
 ```
 npm i path-to-prop

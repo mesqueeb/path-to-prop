@@ -1,0 +1,32 @@
+{
+  "name": "path-to-prop",
+  "version": "0.0.0",
+  "description": "Retrieves a property from an object based on a path.to.that.prop",
+  "main": "dist/index.cjs.js",
+  "module": "dist/index.esm.js",
+  "typings": "types/index.d.ts",
+  "scripts": {
+    "test": "ava",
+    "rollup": "rollup -c build/rollup.js",
+    "build": "npm run rollup && npm run test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mesqueeb/path-to-prop.git"
+  },
+  "keywords": [
+    "path-to-prop"
+  ],
+  "author": "Luca Ban - Mesqueeb",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mesqueeb/path-to-prop/issues"
+  },
+  "homepage": "https://github.com/mesqueeb/path-to-prop#readme",
+  "devDependencies": {
+    "ava": "^2.4.0",
+    "rollup": "^1.25.1",
+    "rollup-plugin-typescript2": "^0.24.3",
+    "typescript": "^3.6.4"
+  }
+}

@@ -1,6 +1,6 @@
 {
   "name": "path-to-prop",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Retrieves a property from an object based on a path.to.that.prop",
   "main": "dist/index.cjs.js",
   "module": "dist/index.esm.js",
@@ -14,9 +14,7 @@
     "type": "git",
     "url": "git+https://github.com/mesqueeb/path-to-prop.git"
   },
-  "keywords": [
-    "path-to-prop"
-  ],
+  "keywords": ["path-to-prop"],
   "author": "Luca Ban - Mesqueeb",
   "license": "MIT",
   "bugs": {

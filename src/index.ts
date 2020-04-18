@@ -1,4 +1,3 @@
-
 /**
  * Returns the keys of a path
  *
@@ -26,7 +25,7 @@ export function pathToProp (target: object, path: string): any {
     obj = obj[keys.shift()]
   }
   const key = keys.shift()
-  if (obj && obj.hasOwnProperty(key)) {
+  if (obj && Object.hasOwnProperty.call(obj, key)) {
     return obj[key]
   }
 }

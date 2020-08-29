@@ -9,32 +9,25 @@ Object.defineProperty(exports, '__esModule', { value: true });
  * @returns {string[]} with keys
  */
 function getKeysFromPath(path) {
-    if (!path)
-        return [];
-    // eslint-disable-next-line no-useless-escape
-    return path.match(/[^\/^\.]+/g);
+    return path.split ? path.split(/\.|\//) : path;
 }
 /**
- * Gets a deep property in an object, based on a path to that property
+ * Gets a deep property in an object, based on a path to that property. Pass the path as array when you have prop names with `.` or `/` in them
  *
- * @param {object} target an object to wherefrom to retrieve the deep reference of
- * @param {string} path   'path/to.prop'
- * @returns {*} the last prop in the path
+ * @param {Record<string, unknown>} obj an object to wherefrom to retrieve the deep reference of
+ * @param {string | string[]} path 'path/to.prop' or ['path', 'to', 'prop']
+ * @returns {unknown} the last prop in the path
  */
-function pathToProp(target, path) {
+function pathToProp(obj, path) {
     var keys = getKeysFromPath(path);
-    if (!keys.length)
-        return target;
-    var obj = target;
-    while (obj && keys.length > 1) {
-        obj = obj[keys.shift()];
+    var p;
+    for (p = 0; p < keys.length; p++) {
+        obj = (obj ? obj[keys[p]] : undefined);
     }
-    var key = keys.shift();
-    if (obj && obj.hasOwnProperty(key)) {
-        return obj[key];
-    }
+    return obj === undefined ? undefined : obj;
 }
+var getProp = pathToProp;
 
-exports.default = pathToProp;
 exports.getKeysFromPath = getKeysFromPath;
+exports.getProp = getProp;
 exports.pathToProp = pathToProp;

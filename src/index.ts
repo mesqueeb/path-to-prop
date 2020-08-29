@@ -4,30 +4,24 @@
  * @param   {string} path   a/path/like.this
  * @returns {string[]} with keys
  */
-export function getKeysFromPath (path: string): string[] {
-  if (!path) return []
-  // eslint-disable-next-line no-useless-escape
-  return path.match(/[^\/^\.]+/g)
+export function getKeysFromPath (path: string | string[]): string[] {
+  return (path as any).split ? (path as string).split(/\.|\//) : (path as string[])
 }
 
 /**
- * Gets a deep property in an object, based on a path to that property
+ * Gets a deep property in an object, based on a path to that property. Pass the path as array when you have prop names with `.` or `/` in them
  *
- * @param {object} target an object to wherefrom to retrieve the deep reference of
- * @param {string} path   'path/to.prop'
- * @returns {*} the last prop in the path
+ * @param {Record<string, unknown>} obj an object to wherefrom to retrieve the deep reference of
+ * @param {string | string[]} path 'path/to.prop' or ['path', 'to', 'prop']
+ * @returns {unknown} the last prop in the path
  */
-export function pathToProp (target: object, path: string): any {
+export function pathToProp (obj: Record<string, unknown>, path: string | string[]): unknown {
   const keys = getKeysFromPath(path)
-  if (!keys.length) return target
-  let obj = target
-  while (obj && keys.length > 1) {
-    obj = obj[keys.shift()]
-  }
-  const key = keys.shift()
-  if (obj && Object.hasOwnProperty.call(obj, key)) {
-    return obj[key]
-  }
+  let p
+  for (p = 0; p < keys.length; p++) {
+		obj = (obj ? obj[keys[p]] : undefined) as any
+	}
+  return obj === undefined ? undefined : obj
 }
 
-export default pathToProp
+export const getProp = pathToProp

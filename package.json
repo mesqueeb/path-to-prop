@@ -10,7 +10,8 @@
     "test": "ava --verbose",
     "build": "rm -rf ./types && rm -rf ./dist && npm run lint && npm run test && npm run rollup",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
-    "rollup": "rollup -c build/rollup.js"
+    "rollup": "rollup -c build/rollup.js",
+    "release": "npm run build && np"
   },
   "keywords": [
     "path-to-prop",
@@ -37,6 +38,8 @@
     "eslint": "^7.7.0",
     "eslint-config-prettier": "^6.11.0",
     "eslint-plugin-tree-shaking": "^1.8.0",
+    "np": "^7.4.0",
+    "prettier": "^2.2.1",
     "rollup": "^2.26.7",
     "rollup-plugin-typescript2": "^0.27.2",
     "tsconfig-paths": "^3.9.0",
@@ -58,5 +61,9 @@
       "tsconfig-paths/register",
       "ts-node/register"
     ]
+  },
+  "np": {
+    "yarn": false,
+    "branch": "production"
   }
 }

@@ -28,6 +28,7 @@
     "get-dot-property"
   ],
   "author": "Luca Ban - Mesqueeb",
+  "funding": "https://github.com/sponsors/mesqueeb",
   "license": "MIT",
   "homepage": "https://github.com/mesqueeb/path-to-prop#readme",
   "dependencies": {},

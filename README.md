@@ -1,5 +1,8 @@
 # Path to prop 🛤
 
+<a href="https://www.npmjs.com/package/path-to-prop"><img src="https://img.shields.io/npm/v/path-to-prop.svg" alt="Total Downloads"></a>
+<a href="https://www.npmjs.com/package/path-to-prop"><img src="https://img.shields.io/npm/dw/path-to-prop.svg" alt="Latest Stable Version"></a>
+
 ```
 npm i path-to-prop
 ```

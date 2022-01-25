@@ -2,7 +2,6 @@
   "name": "path-to-prop",
   "version": "1.0.1",
   "sideEffects": false,
-  "type": "module",
   "description": "Retrieves a property from an object based on a 'path/to.that.prop'",
   "module": "./dist/index.es.js",
   "main": "./dist/index.cjs",
@@ -17,10 +16,6 @@
   "files": [
     "dist"
   ],
-  "engines": {
-    "node": ">=12.13",
-    "npm": ">=7"
-  },
   "scripts": {
     "test": "vitest run",
     "lint": "tsc --noEmit && eslint ./src --ext .ts",

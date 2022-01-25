@@ -1,8 +1,8 @@
-import test from 'ava'
+import { test, expect } from 'vitest'
 import { getProp } from '../src'
 
 const target = { a: { b: { c: { d: { e: 1 } } } } }
-test('test', t => {
+test('test', () => {
   const res1 = getProp(target, 'a.b.c.d.e')
   t.deepEqual(res1, 1)
   const res1b = getProp(target, 'a/b/c/d/e')
@@ -18,7 +18,7 @@ test('test', t => {
 })
 
 const dotTarget = { 'a.b': { 'c/d': { 'e.f': 1 } } }
-test('test ./ paths', t => {
+test('test ./ paths', () => {
   const res1 = getProp(dotTarget, ['a.b', 'c/d', 'e.f'])
   t.deepEqual(res1, 1)
   const res1b = getProp(dotTarget, 'a.b.c/d.e.f')
@@ -33,7 +33,7 @@ test('test ./ paths', t => {
   t.deepEqual(res3b, undefined)
 })
 
-test('test non existent props', t => {
+test('test non existent props', () => {
   const res1 = getProp(target, 'a.b.c.d.X')
   t.deepEqual(res1, undefined)
   const res2 = getProp(target, 'X.b.c.d')
@@ -44,12 +44,12 @@ test('test non existent props', t => {
   t.deepEqual(res4, undefined)
 })
 
-test('not an object', t => {
+test('not an object', () => {
   const path = 'a.b'
   const res1 = getProp(null, path)
-  t.is(res1, undefined)
+  expect(res1).toEqual(undefined)
   const res2 = getProp(new Date() as any, path)
-  t.is(res2, undefined)
+  expect(res2).toEqual(undefined)
   const res3 = getProp(function () {} as any, path)
-  t.is(res3, undefined)
+  expect(res3).toEqual(undefined)
 })

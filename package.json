@@ -2,16 +2,30 @@
   "name": "path-to-prop",
   "version": "1.0.0",
   "sideEffects": false,
+  "type": "module",
   "description": "Retrieves a property from an object based on a 'path/to.that.prop'",
-  "main": "dist/index.cjs.js",
-  "module": "dist/index.esm.js",
-  "types": "types/index.d.ts",
+  "module": "./dist/index.es.js",
+  "main": "./dist/index.cjs",
+  "types": "./dist/types/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.es.js",
+      "require": "./dist/index.cjs",
+      "types": "./dist/types/index.d.ts"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "engines": {
+    "node": ">=12.13",
+    "npm": ">=7"
+  },
   "scripts": {
-    "test": "ava --verbose",
-    "build": "rm -rf ./types && rm -rf ./dist && npm run lint && npm run test && npm run rollup",
-    "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
-    "rollup": "rollup -c build/rollup.js",
-    "release": "npm run build && np"
+    "test": "vitest run",
+    "lint": "tsc --noEmit ./src/index.ts && eslint ./src --ext .ts",
+    "build": "rollup -c ./scripts/build.js",
+    "release": "npm run lint && del dist && npm run build && np"
   },
   "keywords": [
     "path-to-prop",
@@ -31,11 +45,10 @@
   "funding": "https://github.com/sponsors/mesqueeb",
   "license": "MIT",
   "homepage": "https://github.com/mesqueeb/path-to-prop#readme",
-  "dependencies": {},
   "devDependencies": {
-    "@typescript-eslint/eslint-plugin": "^5.10.0",
-    "@typescript-eslint/parser": "^5.10.0",
-    "ava": "^4.0.1",
+    "@typescript-eslint/eslint-plugin": "^5.10.1",
+    "@typescript-eslint/parser": "^5.10.1",
+    "del-cli": "^4.0.1",
     "eslint": "^8.7.0",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-tree-shaking": "^1.10.0",
@@ -43,9 +56,8 @@
     "prettier": "^2.5.1",
     "rollup": "^2.66.0",
     "rollup-plugin-typescript2": "^0.31.1",
-    "tsconfig-paths": "^3.12.0",
-    "ts-node": "^10.4.0",
-    "typescript": "^4.5.5"
+    "typescript": "^4.5.5",
+    "vitest": "^0.2.1"
   },
   "bugs": {
     "url": "https://github.com/mesqueeb/path-to-prop/issues"
@@ -54,17 +66,35 @@
     "type": "git",
     "url": "git+https://github.com/mesqueeb/path-to-prop.git"
   },
-  "ava": {
-    "extensions": [
-      "ts"
-    ],
-    "require": [
-      "tsconfig-paths/register",
-      "ts-node/register"
-    ]
-  },
   "np": {
     "yarn": false,
     "branch": "production"
+  },
+  "eslintConfig": {
+    "ignorePatterns": [
+      "node_modules",
+      "dist",
+      "scripts",
+      "test"
+    ],
+    "root": true,
+    "parser": "@typescript-eslint/parser",
+    "plugins": [
+      "@typescript-eslint",
+      "tree-shaking"
+    ],
+    "extends": [
+      "eslint:recommended",
+      "plugin:@typescript-eslint/eslint-recommended",
+      "plugin:@typescript-eslint/recommended",
+      "prettier"
+    ],
+    "rules": {
+      "@typescript-eslint/no-empty-function": "off",
+      "@typescript-eslint/no-explicit-any": "off",
+      "@typescript-eslint/ban-ts-ignore": "off",
+      "tree-shaking/no-side-effects-in-initialization": "error",
+      "@typescript-eslint/ban-ts-comment": "off"
+    }
   }
 }

@@ -1,7 +1,3 @@
-'use strict';
-
-Object.defineProperty(exports, '__esModule', { value: true });
-
 /**
  * Returns the keys of a path
  *
@@ -19,15 +15,13 @@ function getKeysFromPath(path) {
  * @returns {unknown} the last prop in the path
  */
 function pathToProp(obj, path) {
-    var keys = getKeysFromPath(path);
-    var p;
+    const keys = getKeysFromPath(path);
+    let p;
     for (p = 0; p < keys.length; p++) {
         obj = (obj ? obj[keys[p]] : undefined);
     }
     return obj === undefined ? undefined : obj;
 }
-var getProp = pathToProp;
+const getProp = pathToProp;
 
-exports.getKeysFromPath = getKeysFromPath;
-exports.getProp = getProp;
-exports.pathToProp = pathToProp;
+export { getKeysFromPath, getProp, pathToProp };

@@ -1,6 +1,6 @@
 {
   "name": "path-to-prop",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "sideEffects": false,
   "type": "module",
   "description": "Retrieves a property from an object based on a 'path/to.that.prop'",

@@ -18,6 +18,8 @@ Retrieves a property from an object based on a `'path/to.that.prop'`
 import { getProp } from 'path-to-prop'
 
 getProp({ nested: { prop: 1 } }, 'nested.prop') // 1
+
+getProp({ nested: { prop: 1 } }, 'nested') // { prop: 1 }
 ```
 
 You can use `/` or `.` to access nested props:

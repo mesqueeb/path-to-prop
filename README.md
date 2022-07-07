@@ -17,21 +17,27 @@ Retrieves a property from an object based on a `'path/to.that.prop'`
 ```js
 import { getProp } from 'path-to-prop'
 
-const target = {a: {b: {c: {d: {e: 1}}}}}
+getProp({ nested: { prop: 1 } }, 'nested.prop') // 1
+```
+
+You can use `/` or `.` to access nested props:
+
+```js
+const obj = {a: {b: {c: {d: {e: 1}}}}}
 const path = 'a/b/c.d.e'
 
-getProp(target, path)
+getProp(obj, path)
   // returns 1
 
-getProp(target, 'nonexistent.prop')
+getProp(obj, 'nonexistent.prop')
   // returns undefined
 ```
 
 When you have `/` or `.` in your prop names, use an array:
 
 ```js
-const target = {'a/b': {'c.d': 1}}
+const obj = {'a/b': {'c.d': 1}}
 
-getProp(target, ['a/b', 'c.d'])
+getProp(obj, ['a/b', 'c.d'])
   // returns 1
 ```

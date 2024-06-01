@@ -4,9 +4,6 @@
   "description": "Retrieves a property from an object based on a 'path/to.that.prop'",
   "type": "module",
   "sideEffects": false,
-  "types": "./dist/index.d.ts",
-  "module": "./dist/index.js",
-  "main": "./dist/index.js",
   "exports": {
     ".": {
       "require": {
@@ -19,18 +16,25 @@
       }
     }
   },
-  "files": [
-    "dist"
-  ],
   "engines": {
-    "node": ">=12.13"
+    "node": ">=18"
   },
   "scripts": {
     "test": "vitest run",
-    "lint": "tsc --noEmit && eslint ./src --ext .ts",
-    "build": "rollup -c ./rollup.config.js",
-    "release": "npm run lint && del dist && npm run build && np"
+    "lint": "tsc --noEmit && eslint ./src",
+    "build": "del-cli dist && tsc",
+    "release": "npm run lint && npm run build && np"
   },
+  "devDependencies": {
+    "del-cli": "^5.1.0",
+    "np": "^10.0.5",
+    "vitest": "^1.6.0",
+    "@cycraft/eslint": "^0.3.0",
+    "@cycraft/tsconfig": "^0.1.2"
+  },
+  "files": [
+    "dist"
+  ],
   "keywords": [
     "path-to-prop",
     "dot-prop",
@@ -45,61 +49,13 @@
     "get-dot-prop",
     "get-dot-property"
   ],
-  "author": "Luca Ban - Mesqueeb",
+  "author": "Luca Ban - Mesqueeb (https://cycraft.co)",
   "funding": "https://github.com/sponsors/mesqueeb",
   "license": "MIT",
-  "homepage": "https://github.com/mesqueeb/path-to-prop#readme",
-  "devDependencies": {
-    "@typescript-eslint/eslint-plugin": "^5.59.2",
-    "@typescript-eslint/parser": "^5.59.2",
-    "del-cli": "^5.0.0",
-    "eslint": "^8.40.0",
-    "eslint-config-prettier": "^8.8.0",
-    "eslint-plugin-tree-shaking": "^1.10.0",
-    "np": "^7.7.0",
-    "prettier": "^2.8.8",
-    "rollup": "^3.23.0",
-    "rollup-plugin-dts": "^5.3.0",
-    "rollup-plugin-esbuild": "^5.0.0",
-    "typescript": "^4.9.5",
-    "vitest": "^0.31.0"
-  },
-  "bugs": {
-    "url": "https://github.com/mesqueeb/path-to-prop/issues"
-  },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/mesqueeb/path-to-prop.git"
+    "url": "https://github.com/mesqueeb/path-to-prop.git"
   },
-  "np": {
-    "yarn": false,
-    "branch": "production"
-  },
-  "eslintConfig": {
-    "ignorePatterns": [
-      "node_modules",
-      "dist",
-      "scripts",
-      "test"
-    ],
-    "root": true,
-    "parser": "@typescript-eslint/parser",
-    "plugins": [
-      "@typescript-eslint",
-      "tree-shaking"
-    ],
-    "extends": [
-      "eslint:recommended",
-      "plugin:@typescript-eslint/eslint-recommended",
-      "plugin:@typescript-eslint/recommended",
-      "prettier"
-    ],
-    "rules": {
-      "@typescript-eslint/no-empty-function": "off",
-      "@typescript-eslint/no-explicit-any": "off",
-      "@typescript-eslint/ban-ts-ignore": "off",
-      "tree-shaking/no-side-effects-in-initialization": "error",
-      "@typescript-eslint/ban-ts-comment": "off"
-    }
-  }
+  "homepage": "https://github.com/mesqueeb/path-to-prop#readme",
+  "bugs": "https://github.com/mesqueeb/path-to-prop/issues"
 }

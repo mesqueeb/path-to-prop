@@ -25,21 +25,21 @@ getProp({ nested: { prop: 1 } }, 'nested') // { prop: 1 }
 You can use `/` or `.` to access nested props:
 
 ```js
-const obj = {a: {b: {c: {d: {e: 1}}}}}
+const obj = { a: { b: { c: { d: { e: 1 } } } } }
 const path = 'a/b/c.d.e'
 
 getProp(obj, path)
-  // returns 1
+// returns 1
 
 getProp(obj, 'nonexistent.prop')
-  // returns undefined
+// returns undefined
 ```
 
 When you have `/` or `.` in your prop names, use an array:
 
 ```js
-const obj = {'a/b': {'c.d': 1}}
+const obj = { 'a/b': { 'c.d': 1 } }
 
 getProp(obj, ['a/b', 'c.d'])
-  // returns 1
+// returns 1
 ```
